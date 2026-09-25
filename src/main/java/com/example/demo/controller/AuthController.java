@@ -15,7 +15,7 @@ import com.example.demo.dtos.UserResponse;
 
 @RestController
 @RequestMapping("/api/auth")
-//@CrossOrigin(origins = "http://localhost:3000") // your frontend URL
+@CrossOrigin("*") // your frontend URL
 public class AuthController {
 
 	private final AuthService authService;

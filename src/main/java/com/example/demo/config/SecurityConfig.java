@@ -22,7 +22,7 @@ public class SecurityConfig {
 			.cors(Customizer.withDefaults()) // needed so the frontend can call the API
 			.csrf(csrf -> csrf.disable())    // fine for a stateless REST API
 			.authorizeHttpRequests(auth -> auth
-				.requestMatchers("/api/auth/**").permitAll()
+				.requestMatchers("/api/auth/**","/api/interview/**").permitAll()
 				.anyRequest().authenticated()
 			);
 		return http.build();
