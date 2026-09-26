@@ -24,7 +24,7 @@ export class LogIn {
             (response)=>{
               console.log(response);
               this.message="User registered successfully!";
-               this.router.navigate(['/dashboard']);
+               this.router.navigate(['/interview-setup']);
             },
             (error)=>{
               console.log(error);

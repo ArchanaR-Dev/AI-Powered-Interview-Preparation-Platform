@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.User;
 import com.example.demo.Service.AuthService;
+import com.example.demo.Service.JWTservice;
 import com.example.demo.dtos.LogInRequest;
 import com.example.demo.dtos.UserResponse;
 
@@ -19,9 +20,11 @@ import com.example.demo.dtos.UserResponse;
 public class AuthController {
 
 	private final AuthService authService;
+	private final JWTservice jwtService;
 
-	public AuthController(AuthService authService) {
+	public AuthController(AuthService authService,JWTservice jwtService) {
 		this.authService = authService;
+		this.jwtService=jwtService;
 	}
 
 	@PostMapping("/sign-up")
@@ -48,7 +51,8 @@ public class AuthController {
 		if (user == null) {
 			return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
 		}
-
-		return new ResponseEntity<>(new UserResponse(user), HttpStatus.OK);
+		
+		String token = jwtService.generateToken(user.getEmail(), user.getId());
+		return new ResponseEntity<>(new UserResponse(token,user), HttpStatus.OK);
 	}
 }

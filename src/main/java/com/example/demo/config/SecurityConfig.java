@@ -7,9 +7,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
+	
+	 private final JwtAuthFilter jwtAuthFilter;
+
+	    public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
+	        this.jwtAuthFilter = jwtAuthFilter;
+	    }
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -22,9 +29,10 @@ public class SecurityConfig {
 			.cors(Customizer.withDefaults()) // needed so the frontend can call the API
 			.csrf(csrf -> csrf.disable())    // fine for a stateless REST API
 			.authorizeHttpRequests(auth -> auth
-				.requestMatchers("/api/auth/**","/api/interview/**").permitAll()
+				.requestMatchers("/api/auth/**").permitAll()
 				.anyRequest().authenticated()
-			);
+			)
+			 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
 }
