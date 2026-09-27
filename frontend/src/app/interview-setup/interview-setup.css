@@ -1,0 +1,131 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+body,
+:host {
+  margin: 0;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 36px;
+  box-sizing: border-box;
+}
+
+:host {
+  background: linear-gradient(135deg, #fbcfe8 0%, #bae6fd 100%);
+}
+
+.form-wrapper h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+}
+
+.form-wrapper .subtitle {
+  margin: 0 0 24px;
+  font-size: 13.5px;
+  color: #475569;
+  text-align: center;
+  line-height: 1.5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  letter-spacing: 0.2px;
+}
+
+.required {
+  color: #dc2626;
+}
+
+select {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+button[type="submit"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button[type="submit"]:hover {
+  background: #1d4ed8;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+.message {
+  margin-top: 20px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.message.success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.message.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}

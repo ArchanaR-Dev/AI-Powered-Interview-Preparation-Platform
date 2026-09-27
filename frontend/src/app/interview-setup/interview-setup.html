@@ -1,1 +1,28 @@
-<p>interview-setup works!</p>
+<div class="form-wrapper">
+  <h2>Set Up Your Interview</h2>
+  <p class="subtitle">Choose a role and difficulty to begin your AI-powered mock interview.</p>
+
+  <form (ngSubmit)="startInterview()">
+    <div>
+      <label for="role">Role <span class="required">*</span></label>
+      <select id="role" name="role" [(ngModel)]="setup.role" required>
+        <option value="" disabled selected>Select a role</option>
+        <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="difficulty">Difficulty <span class="required">*</span></label>
+      <select id="difficulty" name="difficulty" [(ngModel)]="setup.difficulty" required>
+        <option value="" disabled selected>Select difficulty</option>
+        <option *ngFor="let d of difficulties" [value]="d">{{ d }}</option>
+      </select>
+    </div>
+
+    <button type="submit">Start Interview</button>
+  </form>
+
+  <p class="message" [class.error]="isError" [class.success]="!isError" *ngIf="message">
+    {{ message }}
+  </p>
+</div>
