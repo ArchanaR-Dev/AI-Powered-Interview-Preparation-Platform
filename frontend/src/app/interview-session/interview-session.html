@@ -1,0 +1,84 @@
+<div class="session-wrapper">
+
+  <div *ngIf="loadingQuestions" class="loading">
+    <div class="spinner"></div>
+    <p>Generating your interview questions...</p>
+  </div>
+
+  <div *ngIf="!loadingQuestions && questions.length > 0" class="session-card">
+
+    <div class="progress-bar">
+      <span *ngFor="let q of questions; let i = index"
+            class="progress-dot"
+            [class.active]="i === currentIndex"
+            [class.answered]="q.userAnswer">
+      </span>
+    </div>
+
+    <p class="question-count">Question {{ currentIndex + 1 }} of {{ questions.length }}</p>
+
+    <h2 class="question-text">{{ currentQuestion.question }}</h2>
+
+    <!-- Not yet answered: show input -->
+    <div *ngIf="!currentQuestion.userAnswer" class="answer-section">
+      <textarea
+        [(ngModel)]="answerText"
+        rows="6"
+        placeholder="Type your answer here..."
+      ></textarea>
+
+      <div *ngIf="errorMessage" class="error-text">{{ errorMessage }}</div>
+
+      <button class="btn-primary" (click)="submitAnswer()" [disabled]="submitting">
+        {{ submitting ? 'Evaluating your answer...' : 'Submit Answer' }}
+      </button>
+    </div>
+
+    <!-- Already answered: show answer + feedback -->
+    <div *ngIf="currentQuestion.userAnswer" class="feedback-section">
+      <div class="your-answer">
+        <h4>Your Answer</h4>
+        <p>{{ currentQuestion.userAnswer }}</p>
+      </div>
+
+      <div class="score-badge">
+        Score: {{ currentQuestion.score }} / 10
+      </div>
+
+      <div class="feedback-block">
+        <h4>Technical Feedback</h4>
+        <p>{{ currentQuestion.technicalFeedback }}</p>
+      </div>
+
+      <div class="feedback-block">
+        <h4>Communication Feedback</h4>
+        <p>{{ currentQuestion.communicationFeedback }}</p>
+      </div>
+
+      <div class="feedback-block">
+        <h4>Missing Points</h4>
+        <p>{{ currentQuestion.missingPoints }}</p>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-secondary" (click)="previousQuestion()" [disabled]="currentIndex === 0">
+          Previous
+        </button>
+
+        <button *ngIf="!isLastQuestion" class="btn-primary" (click)="nextQuestion()">
+          Next Question
+        </button>
+
+        <button *ngIf="isLastQuestion" class="btn-primary" (click)="finishInterview()">
+          Finish Interview
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="!loadingQuestions && questions.length === 0" class="error-state">
+    <p>{{ errorMessage || 'No questions available.' }}</p>
+  </div>
+
+</div>

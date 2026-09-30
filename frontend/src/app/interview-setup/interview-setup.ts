@@ -61,7 +61,7 @@ export class InterviewSetup {
         this.message = 'Interview created successfully!';
         this.isError = false;
         // adjust once you have an actual interview session/questions page
-        // this.router.navigate(['/interview', response.id]);
+        this.router.navigate(['/interview-setup', response.id]);
       },
       (error) => {
         console.log(error);
