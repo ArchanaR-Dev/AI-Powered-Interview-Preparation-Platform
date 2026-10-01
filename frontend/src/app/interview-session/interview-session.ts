@@ -126,6 +126,6 @@ export class InterviewSession implements OnInit {
   }
 
   finishInterview(): void {
-    this.router.navigate(['/dashboard']); // adjust to your actual post-interview route
+    this.router.navigate(['/interview-setup', this.interviewId, 'report']);// adjust to your actual post-interview route
   }
 }

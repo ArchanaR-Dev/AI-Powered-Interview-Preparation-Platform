@@ -25,7 +25,7 @@ export class Register {
         (response)=>{
           console.log(response);
           this.message="User registered successfully!";
-           this.router.navigate(['/log-in']);
+           this.router.navigate(['/']);
         },
         (error)=>{
           console.log(error);

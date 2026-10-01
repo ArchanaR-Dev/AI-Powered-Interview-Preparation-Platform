@@ -1,0 +1,63 @@
+<div class="report-wrapper">
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Preparing your interview report...</p>
+  </div>
+
+  <div *ngIf="!loading && errorMessage" class="error-state">
+    <p>{{ errorMessage }}</p>
+    <button class="btn-secondary" (click)="backToQuestions()">Back to Questions</button>
+  </div>
+
+  <div *ngIf="!loading && report" class="report-card">
+
+    <div class="report-header">
+      <h2>Interview Report</h2>
+      <div class="meta-tags">
+        <span class="tag">{{ report.role }}</span>
+        <span class="tag">{{ report.difficulty }}</span>
+      </div>
+    </div>
+
+    <div class="score-circle-wrapper">
+      <div class="score-circle">
+        <span class="score-value">{{ report.overallScore }}</span>
+        <span class="score-max">/ 10</span>
+      </div>
+      <p class="score-label">Overall Score</p>
+    </div>
+
+    <div class="report-section">
+      <h3>Technical Performance</h3>
+      <p>{{ report.technicalPerformance }}</p>
+    </div>
+
+    <div class="report-section">
+      <h3>Communication Performance</h3>
+      <p>{{ report.communicationPerformance }}</p>
+    </div>
+
+    <div class="report-section highlight-warning">
+      <h3>Missing Topics</h3>
+      <p>{{ report.missingTopics }}</p>
+    </div>
+
+    <div class="report-section highlight-info">
+      <h3>Recommended Topics</h3>
+      <p>{{ report.recommendedTopics }}</p>
+    </div>
+
+    <div class="report-section">
+      <h3>Overall Feedback</h3>
+      <p>{{ report.overallFeedback }}</p>
+    </div>
+
+    <div class="report-actions">
+      <button class="btn-secondary" (click)="backToQuestions()">Review Answers</button>
+      <button class="btn-primary" (click)="goToDashboard()">Done</button>
+    </div>
+
+  </div>
+
+</div>

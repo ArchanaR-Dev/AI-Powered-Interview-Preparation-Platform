@@ -3,10 +3,12 @@ import { LogIn } from './pages/log-in/log-in';
 import { Register  } from './pages/register/register';
 import { InterviewSetup } from './interview-setup/interview-setup';
 import { InterviewSession } from './interview-session/interview-session';
+import { InterviewReport } from './interview-report/interview-report';
 
 export const routes: Routes = [
     { path: '', component: LogIn },
     { path: 'register', component: Register },
     { path:'interview-setup',component:InterviewSetup},
-    { path: 'interview-setup/:id', component: InterviewSession }
+    { path: 'interview-setup/:id', component: InterviewSession },
+    { path: 'interview-setup/:id/report', component: InterviewReport }
 ];

@@ -29,4 +29,12 @@ constructor(private http: HttpClient) {}
   submitAnswer(questionId: number, answer: string): Observable<any> {
     return this.http.post(BASE_URL + `api/questions/${questionId}/answer`, { answer });
   }
+
+  generateReport(interviewId: number): Observable<any> {
+    return this.http.post(BASE_URL + `api/interview/${interviewId}/report/generate`, {});
+  }
+
+  getReport(interviewId: number): Observable<any> {
+    return this.http.get(BASE_URL + `api/interview/${interviewId}/report`);
+  }
 }
